@@ -1,0 +1,4 @@
+Margin在使用的时候有很多要注意的地方：
+ie的双边距bug（如果盒子浮动了，并且设置了一个margin-left,那么在其它浏览器中不会出现bug但是在ie6中会出现双倍边距）。
+如果两个并列的div一个设置了margin-bottom,另一个设置了margin-top，那么它们之间的距离不是margin-bottom+margin-top的值，而是两者之中的最大值（margin合并现象）
+如果两个div是父子关系，那么将来在设置了子元素的margin-top的时候，父元素也会跟着子元素一起拥有margin-top的值。
