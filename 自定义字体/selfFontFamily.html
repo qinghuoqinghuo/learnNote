@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义字体</title>
+    <style>
+        @font-face {
+            font-family: 'xiaopingguo';
+            src: url(小苹果.ttf)
+        }
+
+        @font-face {
+            font-family: 'guanggun';
+            src: url(逛逛祝福体.ttf)
+        }
+        @font-face {
+            font-family: 'zuozuomengxiang';
+            src: url(左左梦巷.ttf)
+        }
+        @font-face {
+            font-family: 'mianbao';
+            src: url(Tensentype-MianBaoJ.ttf)
+        }
+        @font-face {
+            font-family: 'stheiti';
+            src: url(STHeiti-Medium.ttc)
+        }
+        @font-face {
+            font-family: 'yingwen';
+            src: url(英文.ttf)
+        }
+        @font-face {
+            font-family: 'a5';
+            src: url(Bireun.ttf)
+        }
+
+        p {
+            font-size: 32px;
+            line-height: 32px;
+        }
+
+        div {
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 5px #00ffff;
+        }
+    </style>
+</head>
+<body>
+<div>
+</div>
+</body>
+</html>
+<script>
+    var fontFamily = ['xiaopingguo', 'guanggun','zuozuomengxiang','mianbao','stheiti','yingwen','a5']
+    var text = ['小苹果字体','光棍节字体','左左梦巷','腾祥面包体简体','STHeiti-Light','英文签名体wangjinchao','Bireun字体3434']
+    var outBox = document.getElementsByTagName('div')[0]
+    for (var i = 0; i < fontFamily.length; i++) {
+        var children = document.createElement('p')
+        children.innerHTML = '自定义字体:'+ text[i]
+        children.style.fontFamily = fontFamily[i]
+        outBox.appendChild(children)
+    }
+</script>
