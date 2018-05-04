@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <style>
+        body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, img, dl, dt, dd, table, th, td, blockquote, fieldset, div, strong, label, em {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        ul, ol, li {
+            list-style: none;
+        }
+
+        input, button {
+            margin: 0;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .box {
+            padding: 9px 0 0 11px;
+            width: 759px;
+            height: 611px;
+            background: #ccc;
+            margin: 20px auto;
+        }
+
+        .inbox {
+            width: 751px;
+            height: 596px;
+            position: relative;
+        }
+
+        #random_box li {
+            position: absolute;
+            width: 144px;
+            overflow: hidden;
+            height: 144px;
+            border: 3px solid #c7c5ca;
+            background: #fff;
+        }
+
+        #random_box li img {
+            width: 144px;
+            display: block;
+            height: 144px;
+        }
+
+        .ok {
+            display: block;
+            width: 442px;
+            height: 294px;
+            background: #c00;
+            color: #fff;
+            font-size: 48px;
+            position: absolute;
+            top: 149px;
+            left: 148px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 280px;
+        }
+
+        #random_1 {
+            left: 0;
+            top: 0;
+        }
+
+        #random_2 {
+            left: 148px;
+            top: 0;
+        }
+
+        #random_3 {
+            left: 296px;
+            top: 0;
+        }
+
+        #random_4 {
+            left: 444px;
+            top: 0;
+        }
+
+        #random_5 {
+            left: 592px;
+            top: 0;
+        }
+
+        #random_6 {
+            left: 592px;
+            top: 148px;
+        }
+
+        #random_7 {
+            left: 592px;
+            top: 298px;
+        }
+
+        #random_8 {
+            left: 592px;
+            top: 446px;
+        }
+
+        #random_9 {
+            left: 444px;
+            top: 446px;
+        }
+
+        #random_10 {
+            left: 296px;
+            top: 446px;
+        }
+
+        #random_11 {
+            left: 148px;
+            top: 446px;
+        }
+
+        #random_12 {
+            left: 0;
+            top: 446px;
+        }
+
+        #random_13 {
+            left: 0;
+            top: 298px;
+        }
+
+        #random_14 {
+            left: 0;
+            top: 148px;
+        }
+
+        #random_box li.random_current {
+            border: 1px solid red;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="inbox">
+        <ul id="random_box">
+            <li id="random_1">1</li>
+            <li id="random_2">2</li>
+            <li id="random_3">3</li>
+            <li id="random_4">4</li>
+            <li id="random_5">5</li>
+            <li id="random_6">6</li>
+            <li id="random_7">7</li>
+            <li id="random_8">8</li>
+            <li id="random_9">9</li>
+            <li id="random_10">10</li>
+            <li id="random_11">11</li>
+            <li id="random_12">12</li>
+            <li id="random_13">13</li>
+            <li id="random_14">14</li>
+        </ul>
+        <b class="ok" id="begin" onclick="clickBtn()">抽奖</b>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var countArray = []
+
+    function clickBtn() {
+        var current = Math.floor(Math.random() * 14);
+        countArray.push(current)
+        var newObj = {
+            total: 0
+        }
+        newObj.total = countArray.length
+        countArray.forEach(function (k) {
+            var count = 0
+            countArray.forEach(function (j) {
+                if (k === j) {
+                    count++
+                }
+            })
+            newObj[k] = count
+        })
+        console.log(newObj)
+        var list = document.querySelector('#random_box').children;
+        var now = 0;
+        for (var i = 0; i < list.length; i++) {
+            list[i].className = ''
+        }
+        clearInterval(itemer);
+        var itemer = setInterval(function () {
+            if (current === 0) {
+                list[0].className = 'random_current'
+                clearInterval(itemer);
+            } else {
+                if (now === 0) {
+                    list[now].className = 'random_current'
+                    now++
+                } else {
+                    if (now < current) {
+                        list[now - 1].className = ''
+                        list[now].className = 'random_current'
+                        now++
+                    } else {
+                        clearInterval(itemer);
+                    }
+                }
+            }
+        }, 50)
+    }
+
+    var clickTime = setInterval(clickBtn, 1000)
+</script>
